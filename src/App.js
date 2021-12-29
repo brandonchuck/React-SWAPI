@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CharacterTable from "./CharacterTable";
 
 const axios = require("axios");
@@ -7,6 +7,14 @@ const axios = require("axios");
 function App() {
   const [character, setCharacter] = useState("");
   const [characterName, setCharacterName] = useState("");
+
+  useEffect(() => {
+    axios.get(`https://swapi.dev/api/people/`).then((res) => {
+      res.data.results.forEach((character) => {
+        console.log(character.name);
+      });
+    });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

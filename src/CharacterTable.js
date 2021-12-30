@@ -1,16 +1,6 @@
 import axios from "axios";
 
 const CharacterTable = ({ characterList }) => {
-  // async function fetchHomeworld(homeworld) {
-  //   let res = await axios.get(homeworld).catch((err) => console.log(err));
-  //   return res;
-  // }
-
-  async function fetchHomeworld(homeworld) {
-    let res = await axios.get(homeworld);
-    return res.data.name;
-  }
-
   return (
     <div className="table-container">
       <table className="table table-bordered">
@@ -27,7 +17,6 @@ const CharacterTable = ({ characterList }) => {
         </thead>
         <tbody>
           {characterList.map((character) => {
-            // let home = "http://swapi.dev/api/planets/1/";
             return (
               <tr key={character.id}>
                 <td>{character.name}</td>
@@ -35,7 +24,6 @@ const CharacterTable = ({ characterList }) => {
                 <td>{character.height}</td>
                 <td>{character.mass}</td>
                 <td>{character.homeworld}</td>
-                <td>{fetchHomeworld(home)}</td>
                 <td>{character.species}</td>
               </tr>
             );

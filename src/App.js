@@ -4,16 +4,21 @@ import CharacterTable from "./CharacterTable";
 import axios from "axios";
 
 function App() {
-  // const [character, setCharacter] = useState({});
   const [characterName, setCharacterName] = useState("");
   const [characterList, setCharacterList] = useState([]);
 
   useEffect(() => {
     async function fetchCharacters() {
       let res = await axios.get(`https://swapi.dev/api/people/`);
-      res.data.results.forEach((character) => {
-        character["id"] = Math.floor(Math.random() * 1000);
-      });
+      // res.data.results.forEach((character) => {
+      //   character["id"] = Math.floor(Math.random() * 10000);
+      // });
+
+      for (const character of res.data.results) {
+        console.log(character.species);
+        console.log(character.homeworld);
+      }
+
       setCharacterList(res.data.results);
     }
     fetchCharacters();
@@ -24,7 +29,7 @@ function App() {
     let res = await axios.get(
       `https://swapi.dev/api/people/?search=${characterName}`
     );
-    setCharacterList([...characterList, res]);
+    setCharacterList(res.data.results);
   }
 
   return (

@@ -1,18 +1,22 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import CharacterTable from "./CharacterTable";
+import PaginateBar from "./PaginateBar";
 import axios from "axios";
 
 function App() {
   const [characterName, setCharacterName] = useState("");
   const [characterList, setCharacterList] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     async function fetchCharacters() {
-      let res = await axios.get(`https://swapi.dev/api/people/`);
+      let res = await axios.get(
+        `https://swapi.dev/api/people/?page=${pageNumber}`
+      );
 
       for (const character of res.data.results) {
-        character["id"] = Math.floor(Math.random() * 10000);
+        // character["id"] = Math.floor(Math.random() * 10000);
 
         // findHomeworld(character);
         let homeworld = await axios.get(character.homeworld);
@@ -41,16 +45,27 @@ function App() {
 
   return (
     <div className="App">
-      <h1>STAR WARS API</h1>
-      <form className="search-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          onChange={(e) => setCharacterName(e.target.value)}
-          value={characterName}
-        />
-        <input type="submit" />
-      </form>
-      <CharacterTable characterList={characterList} />
+      <div className="container">
+        <h1>STAR WARS API</h1>
+        <div className="form-container">
+          <form className="form" onSubmit={handleSubmit}>
+            <div className="form-group row">
+              <input
+                type="text"
+                onChange={(e) => setCharacterName(e.target.value)}
+                value={characterName}
+              />
+              <input type="submit" />
+            </div>
+          </form>
+          <br />
+          <CharacterTable
+            characterList={characterList}
+            pageNumber={pageNumber}
+          />
+          <PaginateBar pageNumber={pageNumber} setPageNumber={setPageNumber} />
+        </div>
+      </div>
     </div>
   );
 }

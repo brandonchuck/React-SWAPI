@@ -1,3 +1,11 @@
+body {
+  background-color: gray;
+}
+
+.table {
+  background-color: whitesmoke;
+}
+
 .App {
   text-align: center;
 }

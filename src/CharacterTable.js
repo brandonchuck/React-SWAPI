@@ -1,11 +1,10 @@
-import axios from "axios";
-
-const CharacterTable = ({ characterList }) => {
+const CharacterTable = ({ characterList, pageNumber, setPageNumber }) => {
   return (
     <div className="table-container">
       <table className="table table-bordered">
         <thead>
           <tr>
+            <th>#</th>
             <th>Name</th>
             <th>Birth Date</th>
             <th>Height</th>
@@ -15,9 +14,10 @@ const CharacterTable = ({ characterList }) => {
           </tr>
         </thead>
         <tbody>
-          {characterList.map((character) => {
+          {characterList.map((character, index) => {
             return (
-              <tr key={character.id}>
+              <tr key={character.name}>
+                <td>{index + 1}</td>
                 <td>{character.name}</td>
                 <td>{character.birth_year}</td>
                 <td>{character.height}</td>

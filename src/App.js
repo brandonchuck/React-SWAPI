@@ -4,16 +4,19 @@ import CharacterTable from "./CharacterTable";
 import axios from "axios";
 
 function App() {
-  const [character, setCharacter] = useState({});
+  // const [character, setCharacter] = useState({});
   const [characterName, setCharacterName] = useState("");
   const [characterList, setCharacterList] = useState([]);
 
-  useEffect(async () => {
-    let res = await axios.get(`https://swapi.dev/api/people/`);
-    res.data.results.forEach((character) => {
-      character["id"] = Math.floor(Math.random() * 1000); // add random id for .map() in Charactertable
-    });
-    setCharacterList(res.data.results);
+  useEffect(() => {
+    async function fetchCharacters() {
+      let res = await axios.get(`https://swapi.dev/api/people/`);
+      res.data.results.forEach((character) => {
+        character["id"] = Math.floor(Math.random() * 1000);
+      });
+      setCharacterList(res.data.results);
+    }
+    fetchCharacters();
   }, []);
 
   async function handleSubmit(e) {
@@ -21,8 +24,7 @@ function App() {
     let res = await axios.get(
       `https://swapi.dev/api/people/?search=${characterName}`
     );
-    // setCharacter({ res.data.results[0] });
-    // console.log(character);
+    setCharacterList([...characterList, res]);
   }
 
   return (
@@ -36,7 +38,7 @@ function App() {
         />
         <input type="submit" />
       </form>
-      <CharacterTable character={character} characterList={characterList} />
+      <CharacterTable characterList={characterList} />
     </div>
   );
 }

@@ -16,8 +16,6 @@ function App() {
       );
 
       for (const character of res.data.results) {
-        // character["id"] = Math.floor(Math.random() * 10000);
-
         // findHomeworld(character);
         let homeworld = await axios.get(character.homeworld);
         character["homeworld"] = homeworld.data.name;

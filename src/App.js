@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     async function fetchCharacters() {
-      let res = await axios.get(`https://swapi.dev/api/people/?page=`);
+      let res = await axios.get(`https://swapi.dev/api/people/`);
 
       for (const character of res.data.results) {
         character["id"] = Math.floor(Math.random() * 10000);

@@ -11,7 +11,6 @@ const CharacterTable = ({ characterList }) => {
             <th>Height</th>
             <th>Mass</th>
             <th>Homeworld</th>
-            <th>Homeworld Test</th>
             <th>Species</th>
           </tr>
         </thead>

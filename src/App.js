@@ -9,16 +9,23 @@ function App() {
 
   useEffect(() => {
     async function fetchCharacters() {
-      let res = await axios.get(`https://swapi.dev/api/people/`);
-      // res.data.results.forEach((character) => {
-      //   character["id"] = Math.floor(Math.random() * 10000);
-      // });
+      let res = await axios.get(`https://swapi.dev/api/people/?page=`);
 
       for (const character of res.data.results) {
-        console.log(character.species);
-        console.log(character.homeworld);
-      }
+        character["id"] = Math.floor(Math.random() * 10000);
 
+        // findHomeworld(character);
+        let homeworld = await axios.get(character.homeworld);
+        character["homeworld"] = homeworld.data.name;
+
+        // findSpecies(character);
+        if (character.species.length !== 0) {
+          let species = await axios.get(character.species[0]);
+          character["species"] = species.data.name;
+        } else {
+          character["species"] = "Unknown";
+        }
+      }
       setCharacterList(res.data.results);
     }
     fetchCharacters();
@@ -49,20 +56,3 @@ function App() {
 }
 
 export default App;
-
-// Table requirements:
-// name
-// birth date
-// height
-// mass
-// homeworld
-// species
-
-// **** Searching: ****
-// get character object w/properties
-// send character to table to render properties
-
-// **** useEffect(): ****
-// get list of all characters
-// store them in characterList
-// send characterList to table

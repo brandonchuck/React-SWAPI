@@ -1,31 +1,29 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import CharacterTable from "./CharacterTable";
-
-const axios = require("axios");
+import axios from "axios";
 
 function App() {
-  const [character, setCharacter] = useState("");
+  const [character, setCharacter] = useState({});
   const [characterName, setCharacterName] = useState("");
+  const [characterList, setCharacterList] = useState([]);
 
-  useEffect(() => {
-    axios.get(`https://swapi.dev/api/people/`).then((res) => {
-      res.data.results.forEach((character) => {
-        console.log(character.name);
-      });
+  useEffect(async () => {
+    let res = await axios.get(`https://swapi.dev/api/people/`);
+    res.data.results.forEach((character) => {
+      character["id"] = Math.floor(Math.random() * 1000); // add random id for .map() in Charactertable
     });
+    setCharacterList(res.data.results);
   }, []);
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
-
-    axios
-      .get(`https://swapi.dev/api/people/?search=${characterName}`)
-      .then((res) => {
-        setCharacter(res);
-        console.log(res.data.results[0]);
-      });
-  };
+    let res = await axios.get(
+      `https://swapi.dev/api/people/?search=${characterName}`
+    );
+    // setCharacter({ res.data.results[0] });
+    // console.log(character);
+  }
 
   return (
     <div className="App">
@@ -38,7 +36,7 @@ function App() {
         />
         <input type="submit" />
       </form>
-      <CharacterTable character={character} />
+      <CharacterTable character={character} characterList={characterList} />
     </div>
   );
 }
@@ -52,3 +50,12 @@ export default App;
 // mass
 // homeworld
 // species
+
+// **** Searching: ****
+// get character object w/properties
+// send character to table to render properties
+
+// **** useEffect(): ****
+// get list of all characters
+// store them in characterList
+// send characterList to table

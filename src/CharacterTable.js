@@ -1,18 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
-import ReactPaginate from "react-paginate";
 
-const CharacterTable = ({ character }) => {
-  // console.log(character.data);
-
-  const [list, setList] = useState([]);
-  const [perPage, setPerPage] = useState(10);
-  const [page, setPage] = useState(0);
-  const [pages, setPages] = useState(0);
-
-  // useEffect(() => {
-  //   axios.get()
-  // })
+const CharacterTable = ({ characterList }) => {
+  function findHomeworld(homeworld) {
+    axios.get(homeworld).then((res) => {
+      return res.data.name;
+    });
+  }
 
   return (
     <div className="table-container">
@@ -24,10 +17,25 @@ const CharacterTable = ({ character }) => {
             <th>Height</th>
             <th>Mass</th>
             <th>Homeworld</th>
+            <th>Homeworld Test</th>
             <th>Species</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {characterList.map((character) => {
+            return (
+              <tr key={character.id}>
+                <td>{character.name}</td>
+                <td>{character.birth_year}</td>
+                <td>{character.height}</td>
+                <td>{character.mass}</td>
+                <td>{character.homeworld}</td>
+                <td>{findHomeworld(character.homeworld)}</td>
+                <td>{character.species}</td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );

@@ -10,26 +10,6 @@ function App() {
   const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
-    async function fetchCharacters() {
-      let res = await axios.get(
-        `https://swapi.dev/api/people/?page=${pageNumber}`
-      );
-
-      for (const character of res.data.results) {
-        // findHomeworld(character);
-        let homeworld = await axios.get(character.homeworld);
-        character["homeworld"] = homeworld.data.name;
-
-        // findSpecies(character);
-        if (character.species.length !== 0) {
-          let species = await axios.get(character.species[0]);
-          character["species"] = species.data.name;
-        } else {
-          character["species"] = "Unknown";
-        }
-      }
-      setCharacterList(res.data.results);
-    }
     fetchCharacters();
   }, []);
 
@@ -38,6 +18,27 @@ function App() {
     let res = await axios.get(
       `https://swapi.dev/api/people/?search=${characterName}`
     );
+    setCharacterList(res.data.results);
+  }
+
+  async function fetchCharacters() {
+    let res = await axios.get(
+      `https://swapi.dev/api/people/?page=${pageNumber}`
+    );
+
+    for (const character of res.data.results) {
+      // findHomeworld(character);
+      let homeworld = await axios.get(character.homeworld);
+      character["homeworld"] = homeworld.data.name;
+
+      // findSpecies(character);
+      if (character.species.length !== 0) {
+        let species = await axios.get(character.species[0]);
+        character["species"] = species.data.name;
+      } else {
+        character["species"] = "Unknown";
+      }
+    }
     setCharacterList(res.data.results);
   }
 

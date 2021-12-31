@@ -1,4 +1,4 @@
-const CharacterTable = ({ characterList, pageNumber, setPageNumber }) => {
+const CharacterTable = ({ characterList }) => {
   return (
     <div className="table-container">
       <table className="table table-bordered">

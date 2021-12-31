@@ -1,4 +1,4 @@
-const PaginateBar = ({ pageNumber, setPageNumber }) => {
+const PaginateBar = ({ characterList, pageNumber, setPageNumber }) => {
   function handleNextClick() {
     setPageNumber(pageNumber++);
   }
@@ -12,51 +12,17 @@ const PaginateBar = ({ pageNumber, setPageNumber }) => {
             <span className="sr-only">Previous</span>
           </a>
         </li>
-        <li className="page-item">
-          <a className="page-link" href="#">
-            1
-          </a>
-        </li>
-        <li className="page-item">
-          <a className="page-link" href="#">
-            2
-          </a>
-        </li>
-        <li className="page-item">
-          <a className="page-link" href="#">
-            3
-          </a>
-        </li>
-        <li className="page-item">
-          <a className="page-link" href="#">
-            4
-          </a>
-        </li>
-        <li className="page-item">
-          <a className="page-link" href="#">
-            5
-          </a>
-        </li>
-        <li className="page-item">
-          <a className="page-link" href="#">
-            6
-          </a>
-        </li>
-        <li className="page-item">
-          <a className="page-link" href="#">
-            7
-          </a>
-        </li>
-        <li className="page-item">
-          <a className="page-link" href="#">
-            8
-          </a>
-        </li>
-        <li className="page-item">
-          <a className="page-link" href="#">
-            9
-          </a>
-        </li>
+        {characterList.map((index) => {
+          let page = index.toString();
+
+          return (
+            <li className="page-item">
+              <a className="page-link" href="#">
+                {page}
+              </a>
+            </li>
+          );
+        })}
         <li className="page-item">
           <a
             className="page-link"

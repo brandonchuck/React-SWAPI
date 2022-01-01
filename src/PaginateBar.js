@@ -4,8 +4,8 @@ const PaginateBar = ({ updatePageNumber }) => {
     pages.push(i);
   }
 
-  function handlePageClick(e) {
-    updatePageNumber(e.target.value);
+  function handlePageClick(pageNum) {
+    updatePageNumber(pageNum);
   }
 
   return (
@@ -20,13 +20,12 @@ const PaginateBar = ({ updatePageNumber }) => {
         {pages.map((page) => {
           return (
             <li className="page-item" key={page}>
-              <a
+              <button
                 className="page-link"
-                href="#"
-                onClick={(e) => handlePageClick(e)}
+                onClick={(e) => handlePageClick(e.target.value)}
               >
                 {page}
-              </a>
+              </button>
             </li>
           );
         })}

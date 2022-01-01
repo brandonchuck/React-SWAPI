@@ -1,28 +1,26 @@
-const PaginateBar = ({ updatePageNumber }) => {
+const PaginateBar = ({ updatePageNumber, handleNextPrevClick }) => {
   const pages = [];
   for (let i = 1; i < 10; i++) {
     pages.push(i);
-  }
-
-  function handlePageClick(pageNum) {
-    updatePageNumber(pageNum);
   }
 
   return (
     <nav>
       <ul className="pagination justify-content-center">
         <li className="page-item">
-          <a className="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span className="sr-only">Previous</span>
-          </a>
+          <button
+            className="page-link"
+            onClick={(e) => handleNextPrevClick(e.target.textContent)}
+          >
+            Prev
+          </button>
         </li>
         {pages.map((page) => {
           return (
             <li className="page-item" key={page}>
               <button
                 className="page-link"
-                onClick={(e) => handlePageClick(e.target.value)}
+                onClick={(e) => updatePageNumber(e.target.textContent)}
               >
                 {page}
               </button>
@@ -30,10 +28,12 @@ const PaginateBar = ({ updatePageNumber }) => {
           );
         })}
         <li className="page-item">
-          <a className="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span className="sr-only">Next</span>
-          </a>
+          <button
+            className="page-link"
+            onClick={(e) => handleNextPrevClick(e.target.textContent)}
+          >
+            Next
+          </button>
         </li>
       </ul>
     </nav>

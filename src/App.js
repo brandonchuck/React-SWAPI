@@ -9,17 +9,12 @@ function App() {
   const [characterList, setCharacterList] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
 
-  // const totalCharacters = 82;
-  // const charactersPerPage = 10;
-  // const numOfButtons = Math.ceil(totalCharacters / charactersPerPage);
-
   let searchCharacterURL = `https://swapi.dev/api/people/?search=${characterName}`;
-
   let peopleURL = `https://swapi.dev/api/people/?page=${pageNumber}`;
 
   useEffect(() => {
     fetchCharacters();
-  }, []);
+  }, [pageNumber]);
 
   function updatePageNumber(pageNum) {
     setPageNumber(pageNum);
@@ -61,23 +56,11 @@ function App() {
     setCharacterList(res.data.results);
   }
 
-  // async function formatResults(results) {
-  //   for (const character of results) {
-  //     let homeworld = await axios.get(character.homeworld);
-  //     character["homeworld"] = homeworld.data.name;
-
-  //     if (character.species.length !== 0) {
-  //       let species = await axios.get(character.species[0]);
-  //       character["species"] = species.data.name;
-  //     } else {
-  //       character["species"] = "Unknown";
-  //     }
-  //   }
-  // }
-
-  // function handleNextClick() {}
-
-  // function handlePrevClick() {}
+  function handleNextPrevClick(buttonName) {
+    buttonName === "Prev"
+      ? setPageNumber(pageNumber - 1)
+      : setPageNumber(pageNumber + 1);
+  }
 
   return (
     <div className="App">
@@ -97,7 +80,11 @@ function App() {
         </div>
         <br />
         <CharacterTable characterList={characterList} />
-        <PaginateBar updatePageNumber={updatePageNumber} />
+        <PaginateBar
+          pageNumber={pageNumber}
+          handleNextPrevClick={handleNextPrevClick}
+          updatePageNumber={updatePageNumber}
+        />
       </div>
     </div>
   );

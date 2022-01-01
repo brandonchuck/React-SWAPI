@@ -1,6 +1,11 @@
-const PaginateBar = ({ characterList, pageNumber, setPageNumber }) => {
-  function handleNextClick() {
-    setPageNumber(pageNumber++);
+const PaginateBar = ({ updatePageNumber }) => {
+  const pages = [];
+  for (let i = 1; i < 10; i++) {
+    pages.push(i);
+  }
+
+  function handlePageClick(e) {
+    updatePageNumber(e.target.value);
   }
 
   return (
@@ -12,24 +17,21 @@ const PaginateBar = ({ characterList, pageNumber, setPageNumber }) => {
             <span className="sr-only">Previous</span>
           </a>
         </li>
-        {characterList.map((index) => {
-          let page = index.toString();
-
+        {pages.map((page) => {
           return (
-            <li className="page-item">
-              <a className="page-link" href="#">
+            <li className="page-item" key={page}>
+              <a
+                className="page-link"
+                href="#"
+                onClick={(e) => handlePageClick(e)}
+              >
                 {page}
               </a>
             </li>
           );
         })}
         <li className="page-item">
-          <a
-            className="page-link"
-            href="#"
-            aria-label="Next"
-            onClick={handleNextClick}
-          >
+          <a className="page-link" href="#" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
             <span className="sr-only">Next</span>
           </a>

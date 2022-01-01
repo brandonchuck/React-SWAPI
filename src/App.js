@@ -9,17 +9,26 @@ function App() {
   const [characterList, setCharacterList] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
 
-  const totalCharacters = 82;
+  // const totalCharacters = 82;
+  // const charactersPerPage = 10;
+  // const numOfButtons = Math.ceil(totalCharacters / charactersPerPage);
+
+  let searchCharacterURL = `https://swapi.dev/api/people/?search=${characterName}`;
+
+  let peopleURL = `https://swapi.dev/api/people/?page=${pageNumber}`;
 
   useEffect(() => {
     fetchCharacters();
   }, []);
 
+  function updatePageNumber(pageNum) {
+    setPageNumber(pageNum);
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
-    let res = await axios.get(
-      `https://swapi.dev/api/people/?search=${characterName}`
-    );
+
+    let res = await axios.get(searchCharacterURL);
 
     for (const character of res.data.results) {
       let homeworld = await axios.get(character.homeworld);
@@ -36,13 +45,8 @@ function App() {
   }
 
   async function fetchCharacters() {
-    let res = await axios.get(
-      `https://swapi.dev/api/people/?page=${pageNumber}`
-    );
+    let res = await axios.get(peopleURL);
 
-    // formatResults(res.data.results);
-
-    // this needs to be its own functions
     for (const character of res.data.results) {
       let homeworld = await axios.get(character.homeworld);
       character["homeworld"] = homeworld.data.name;
@@ -71,6 +75,10 @@ function App() {
   //   }
   // }
 
+  // function handleNextClick() {}
+
+  // function handlePrevClick() {}
+
   return (
     <div className="App">
       <div className="container">
@@ -89,11 +97,7 @@ function App() {
         </div>
         <br />
         <CharacterTable characterList={characterList} />
-        <PaginateBar
-          characterList={characterList}
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
-        />
+        <PaginateBar updatePageNumber={updatePageNumber} />
       </div>
     </div>
   );

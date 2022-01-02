@@ -19,8 +19,11 @@ const PaginateBar = ({ updatePageNumber, handleNextPrevClick }) => {
           return (
             <li className="page-item" key={page}>
               <button
-                className="paginate-button  page-link"
-                onClick={(e) => updatePageNumber(e.target.textContent)}
+                className="paginate-button page-link"
+                onClick={(e) => {
+                  updatePageNumber(e.target.textContent);
+                  e.target.className.toggle("active");
+                }}
               >
                 {page}
               </button>

@@ -20,6 +20,12 @@ function App() {
     setPageNumber(pageNum);
   }
 
+  function handleNextPrevClick(buttonName) {
+    buttonName === "Prev"
+      ? setPageNumber(pageNumber - 1)
+      : setPageNumber(pageNumber + 1);
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -54,12 +60,6 @@ function App() {
       }
     }
     setCharacterList(res.data.results);
-  }
-
-  function handleNextPrevClick(buttonName) {
-    buttonName === "Prev"
-      ? setPageNumber(pageNumber - 1)
-      : setPageNumber(pageNumber + 1);
   }
 
   return (

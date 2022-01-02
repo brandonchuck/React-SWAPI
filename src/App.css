@@ -16,13 +16,11 @@ h1 {
   margin-bottom: 50px;
 }
 
-.table-container {
-  border-radius: 15px !important;
-}
-
 .table {
   border-style: solid;
-  /* border-color: #212529; */
+  border-width: 5px;
+  border-color: #212529;
+  /* border-color: whitesmoke; */
   background-color: #ff0014;
   font-weight: bold;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -82,13 +80,16 @@ td {
   }
 }
 
-.search-bar {
+.search-input {
   color: #ff0014;
   background-color: #212529;
   border-radius: 5px;
   border-style: solid;
+  /* border-color: #ff0014; */
   border-color: whitesmoke;
   font-size: 15pt;
+  font-weight: bold;
+  outline: none;
 }
 
 .search-button {

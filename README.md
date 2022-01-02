@@ -1,6 +1,28 @@
-# Getting Started with Create React App
+# Starwars API Database Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Overview
+
+- Starwars characters database application built with React JS and Bootstrap.
+- Can search individual characters and view information on all characters in the database.
+
+# Website
+
+- See it [here](https://reactjs-expense-tracker.herokuapp.com/) on Heroku! 
+
+# Preview
+
+![starwars-api-preview.png](./public/starwars-api-preview.png)
+
+# Summary
+
+This is my first project using ReactJS and I thought it would be a good learning opportunity to rebuild my VanillaJS Expense Tracker using ReactJS and Bootstrap 5 for the styling. Before diving into remastering the old project, I did a bit of research on class and functional components. For this project I decided to use functional components as they were easier for me to understand as well as brought several benefits. With the addition of Hooks, I could implment state into my functional components to handle changes in user input. For me, the main goal of this project was about learning to "think in React" and getting the hang of the workflow React tries to encourage. After building this project I felt comfortable with the "top down" approach to state and have begun to understand how powerful the library is to Javascript and web developers. For styling, Bootstrap 5 was a breeze to work with and felt very user friendly. The create-react-app command helps to "bootstrap" the react application and helped my web application look stylish in a matter of minutes. Going forward, I am excited to use this combination for styling and discover more about what I can create with Bootstrap.  
+
+- Detailed Features:
+    - Utilized Bootstrap 5 for organized and responsive styling.
+    - Used React JS to rebuild the first version of this application.
+    - Managed state using functional components and hooks.
+    - Used .map() technique for rendering expense rows.
+    - Local storage feature allows users to retain logged expenses.
 
 ## Available Scripts
 
@@ -14,57 +36,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+# Author
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Brandon Chuck | Full Stack Developer | [LinkedIn](https://www.linkedin.com/in/brandonchuck/)

@@ -2,7 +2,7 @@
 
 # Overview
 
-- Starwars characters database application built with React JS and Bootstrap.
+- Starwars characters API database application built with React JS and Bootstrap.
 - Can search individual characters and view information on all characters in the database.
 
 # Website
@@ -11,7 +11,9 @@
 
 # Preview
 
-![starwars-api-preview.png](./public/starwars-api-preview.png)
+![starwars-api-preview1.png](./public/starwars-api-preview1.png)
+![starwars-api-preview2.png](./public/starwars-api-preview2.png)
+
 
 # Summary
 
@@ -19,10 +21,12 @@ This is my first project using ReactJS and I thought it would be a good learning
 
 - Detailed Features:
     - Utilized Bootstrap 5 for organized and responsive styling.
-    - Used React JS to rebuild the first version of this application.
     - Managed state using functional components and hooks.
-    - Used .map() technique for rendering expense rows.
-    - Local storage feature allows users to retain logged expenses.
+    - Used Axios for making HTTP requests to Star Wars API (SWAPI).
+    - Utilized async and await to create asynchronous API calls.
+    - Rendered character rows using .map() technique.
+    - Separate Axios GET requests for character searching and displaying 10 characters per page.
+    - Implemented bootstrap pagination for viewing 10 characters at a time.
 
 ## Available Scripts
 

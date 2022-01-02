@@ -1,12 +1,12 @@
 const CharacterTable = ({ characterList }) => {
   return (
-    <div className="table-container row align-items-center">
-      <table className="table table-bordered table-dark ">
-        <thead>
+    <div className="table-container">
+      <table className="table table-responsive table-dark table-hover table-bordered">
+        <thead className="thead-dark">
           <tr>
             <th>#</th>
-            <th>Name</th>
             <th>Birth Date</th>
+            <th>Name</th>
             <th>Height</th>
             <th>Mass</th>
             <th>Homeworld</th>

@@ -63,19 +63,19 @@ function App() {
   }
 
   return (
-    <div className="App row justify-content-center">
-      <div className="container row align-items-center">
+    <div className="App">
+      <div className="container">
         <h1>STAR WARS API</h1>
         <div className="form-container">
           <form className="form" onSubmit={handleSubmit}>
             <div className="form-group row justify-content-center">
               <input
-                className=" search-bar col-sm-5 "
+                className=" search-bar col-sm-5"
                 type="text"
                 onChange={(e) => setCharacterName(e.target.value)}
                 value={characterName}
               />
-              <button className="search-button col-sm-3" type="submit">
+              <button className="search-button col-sm-2" type="submit">
                 Search
               </button>
             </div>

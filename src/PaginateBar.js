@@ -5,11 +5,11 @@ const PaginateBar = ({ updatePageNumber, handleNextPrevClick }) => {
   }
 
   return (
-    <nav>
-      <ul className="pagination justify-content-center">
+    <nav className="pagination-bar">
+      <ul className="pagination pagination-lg justify-content-center">
         <li className="page-item">
           <button
-            className="page-link"
+            className="paginate-control page-link"
             onClick={(e) => handleNextPrevClick(e.target.textContent)}
           >
             Prev
@@ -19,7 +19,7 @@ const PaginateBar = ({ updatePageNumber, handleNextPrevClick }) => {
           return (
             <li className="page-item" key={page}>
               <button
-                className="page-link"
+                className="paginate-button  page-link"
                 onClick={(e) => updatePageNumber(e.target.textContent)}
               >
                 {page}
@@ -29,7 +29,7 @@ const PaginateBar = ({ updatePageNumber, handleNextPrevClick }) => {
         })}
         <li className="page-item">
           <button
-            className="page-link"
+            className="paginate-control page-link"
             onClick={(e) => handleNextPrevClick(e.target.textContent)}
           >
             Next

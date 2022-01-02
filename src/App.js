@@ -47,8 +47,11 @@ function App() {
 
   async function fetchCharacters() {
     let res = await axios.get(peopleURL);
-
+    let iterator = 0;
     for (const character of res.data.results) {
+      iterator++;
+      character["characterIndex"] = iterator;
+
       let homeworld = await axios.get(character.homeworld);
       character["homeworld"] = homeworld.data.name;
 

@@ -1,6 +1,6 @@
-const PaginateBar = ({ updatePageNumber, handleNextPrevClick }) => {
+const PaginateBar = ({ numOfPages, updatePageNumber, handleNextPrevClick }) => {
   const pages = [];
-  for (let i = 1; i < 10; i++) {
+  for (let i = 1; i <= numOfPages; i++) {
     pages.push(i);
   }
 

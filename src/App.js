@@ -8,6 +8,9 @@ function App() {
   const [characterName, setCharacterName] = useState("");
   const [characterList, setCharacterList] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
+  const [numOfPages, setNumOfPages] = useState(null);
+
+  // const numOfPages = Math.ceil(res.data.count / 10)
 
   let searchCharacterURL = `https://swapi.dev/api/people/?search=${characterName}`;
   let peopleURL = `https://swapi.dev/api/people/?page=${pageNumber}`;
@@ -26,30 +29,22 @@ function App() {
       : setPageNumber(pageNumber + 1);
   }
 
-  async function handleSubmit(e) {
+  async function handleSearch(e) {
     e.preventDefault();
-
-    let res = await axios.get(searchCharacterURL);
-
-    for (const character of res.data.results) {
-      let homeworld = await axios.get(character.homeworld);
-      character["homeworld"] = homeworld.data.name;
-
-      if (character.species.length !== 0) {
-        let species = await axios.get(character.species[0]);
-        character["species"] = species.data.name;
-      } else {
-        character["species"] = "Unknown";
-      }
-    }
-    setCharacterList(res.data.results);
+    getCharacters(searchCharacterURL);
   }
 
   async function fetchCharacters() {
-    let res = await axios.get(peopleURL);
-    let iterator = 0;
-    for (const character of res.data.results) {
-      iterator++;
+    getCharacters(peopleURL);
+  }
+
+  async function getCharacters(url) {
+    let res = await axios.get(url);
+
+    setNumOfPages(Math.ceil(res.data.count / 10)); // this is causing number of pages to be reset
+
+    let iterator = 1;
+    for (let character of res.data.results) {
       character["characterIndex"] = iterator;
 
       let homeworld = await axios.get(character.homeworld);
@@ -61,6 +56,7 @@ function App() {
       } else {
         character["species"] = "unknown";
       }
+      iterator++;
     }
     setCharacterList(res.data.results);
   }
@@ -70,12 +66,13 @@ function App() {
       <div className="container">
         <h1>STAR WARS API</h1>
         <div className="form-container">
-          <form className="form" onSubmit={handleSubmit}>
+          <form className="form" onSubmit={handleSearch}>
             <div className="form-group row justify-content-center">
               <input
                 className=" search-input col-sm-4"
                 type="text"
                 onChange={(e) => setCharacterName(e.target.value)}
+                n
                 value={characterName}
               />
               <button className="search-button col-sm-2" type="submit">
@@ -86,7 +83,7 @@ function App() {
         </div>
         <CharacterTable characterList={characterList} />
         <PaginateBar
-          pageNumber={pageNumber}
+          numOfPages={numOfPages}
           handleNextPrevClick={handleNextPrevClick}
           updatePageNumber={updatePageNumber}
         />

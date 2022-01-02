@@ -70,7 +70,7 @@ function App() {
           <form className="form" onSubmit={handleSubmit}>
             <div className="form-group row justify-content-center">
               <input
-                className=" search-bar col-sm-5"
+                className=" search-input col-sm-4"
                 type="text"
                 onChange={(e) => setCharacterName(e.target.value)}
                 value={characterName}

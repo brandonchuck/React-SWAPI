@@ -1,7 +1,7 @@
 const CharacterTable = ({ characterList }) => {
   return (
-    <div className="table-container">
-      <table className="table table-bordered">
+    <div className="table-container row align-items-center">
+      <table className="table table-bordered table-dark ">
         <thead>
           <tr>
             <th>#</th>

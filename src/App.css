@@ -1,13 +1,34 @@
+html,
 body {
-  background-color: gray;
+  background-color: rgb(36, 36, 36);
+  background-image: url("../public/starwars-background.jpg");
+  background-size: cover;
+  height: 100vh;
+}
+
+.container {
+  height: 100vh;
+}
+
+h1 {
+  font-size: 60pt;
+  color: rgb(255, 217, 0);
+}
+
+.table-container {
+  width: 75%;
 }
 
 .table {
   background-color: whitesmoke;
+  border-radius: 5px;
+  color: rgb(255, 217, 0);
+  font-weight: bold;
 }
 
 .App {
   text-align: center;
+  height: 100vh;
 }
 
 .App-logo {
@@ -43,4 +64,23 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+.search-bar {
+  background-color: whitesmoke;
+  border-radius: 5px;
+  border-style: none;
+}
+
+.search-button {
+  background-color: rgb(255, 217, 0);
+  border-style: none;
+  border-radius: 5px;
+  margin-left: 5px;
+  font-size: 15pt;
+  font-weight: bold;
+}
+
+.form-group {
+  height: 40px;
 }

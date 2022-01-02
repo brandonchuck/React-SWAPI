@@ -50,7 +50,7 @@ function App() {
         let species = await axios.get(character.species[0]);
         character["species"] = species.data.name;
       } else {
-        character["species"] = "Unknown";
+        character["species"] = "unknown";
       }
     }
     setCharacterList(res.data.results);
@@ -63,22 +63,24 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <div className="container">
+    <div className="App row justify-content-center">
+      <div className="container row align-items-center">
         <h1>STAR WARS API</h1>
         <div className="form-container">
           <form className="form" onSubmit={handleSubmit}>
-            <div className="form-group row">
+            <div className="form-group row justify-content-center">
               <input
+                className=" search-bar col-sm-5 "
                 type="text"
                 onChange={(e) => setCharacterName(e.target.value)}
                 value={characterName}
               />
-              <input type="submit" />
+              <button className="search-button col-sm-3" type="submit">
+                Search
+              </button>
             </div>
           </form>
         </div>
-        <br />
         <CharacterTable characterList={characterList} />
         <PaginateBar
           pageNumber={pageNumber}

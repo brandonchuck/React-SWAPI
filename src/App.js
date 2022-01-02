@@ -10,8 +10,6 @@ function App() {
   const [pageNumber, setPageNumber] = useState(1);
   const [numOfPages, setNumOfPages] = useState(null);
 
-  // const numOfPages = Math.ceil(res.data.count / 10)
-
   let searchCharacterURL = `https://swapi.dev/api/people/?search=${characterName}`;
   let peopleURL = `https://swapi.dev/api/people/?page=${pageNumber}`;
 

@@ -58,39 +58,6 @@ function App() {
     if (buttonName === "Prev" && pageNumber > 1) {
       setPageNumber(pageNumber - 1);
     }
-
-    // Working method for next/prev but created simpler method
-    // let url;
-    // if (characterName === "") {
-    //   url = `https://swapi.dev/api/people/?page=${pageNumber}`;
-    // } else {
-    //   url = `https://swapi.dev/api/people/?search=${characterName}&page=${pageNumber}`;
-    // }
-    // console.log("Current Page: " + url);
-
-    // let currentPage = await axios.get(url);
-    // console.log("Next page: " + currentPage.data.next);
-    // console.log("Prev page: " + currentPage.data.previous);
-
-    // if (buttonName === "Next") {
-    //   if (currentPage.data.next !== null) {
-    //     setPageNumber(pageNumber + 1);
-    //     const nextPage = await axios.get(currentPage.data.next);
-    //     getCharacters(nextPage.data.results);
-    //   } else {
-    //     return;
-    //   }
-    // }
-
-    // if (buttonName === "Prev") {
-    //   if (currentPage.data.previous !== null) {
-    //     setPageNumber(pageNumber - 1);
-    //     const prevPage = await axios.get(currentPage.data.previous);
-    //     getCharacters(prevPage.data.results);
-    //   } else {
-    //     return;
-    //   }
-    // }
   }
 
   async function getCharacters(characters) {

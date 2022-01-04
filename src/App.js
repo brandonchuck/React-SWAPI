@@ -31,7 +31,7 @@ function App() {
 
   async function handleSearch(e) {
     e.preventDefault();
-    setPageNumber(1); // reset to pageNumber to 1 on each search
+    setPageNumber(1); // reset pageNumber to 1 on each search
     const url = `https://swapi.dev/api/people/?search=${characterName}`;
     const res = await axios.get(url);
     setNumOfPages(Math.ceil(res.data.count / 10));

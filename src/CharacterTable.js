@@ -5,8 +5,8 @@ const CharacterTable = ({ characterList }) => {
         <thead className="thead-dark">
           <tr>
             <th>#</th>
-            <th>Birth Date</th>
             <th>Name</th>
+            <th>Birth Date</th>
             <th>Height</th>
             <th>Mass</th>
             <th>Homeworld</th>

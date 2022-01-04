@@ -8,9 +8,9 @@ function App() {
   const [characterName, setCharacterName] = useState("");
   const [characterList, setCharacterList] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
-  const [numOfPages, setNumOfPages] = useState();
+  const [numOfPages, setNumOfPages] = useState("");
 
-  let url = `https://swapi.dev/api/people/?search=${characterName}&?page=${pageNumber}`;
+  let url = `https://swapi.dev/api/people/?search=${characterName}&page=${pageNumber}`;
 
   useEffect(() => {
     fetchCharacters();
@@ -18,22 +18,6 @@ function App() {
 
   function updatePageNumber(pageNum) {
     setPageNumber(pageNum);
-  }
-
-  async function handleNextPrevClick(buttonName) {
-    let currentPage = await axios.get(url); // res from current page
-
-    if (buttonName === "Prev") {
-      let prevPageURL = currentPage.data.previous; // url for prev page
-      let prev = await axios.get(prevPageURL);
-      setCharacterList(prev.data.results);
-      setPageNumber(pageNumber - 1);
-    } else {
-      let nextPageURL = currentPage.data.next; // url for next page
-      let next = await axios.get(nextPageURL);
-      setCharacterList(next.data.results);
-      setPageNumber(pageNumber + 1); // prepares for press of the "next" button
-    }
   }
 
   // searching
@@ -47,12 +31,28 @@ function App() {
     getCharacters(url);
   }
 
-  // for both searching and pagination
-  async function getCharacters(url) {
-    console.log(url);
+  async function handleNextPrevClick(buttonName) {
+    let currentPage = await axios.get(url);
 
+    if (buttonName === "Prev") {
+      setPageNumber(pageNumber - 1);
+      let prev = await axios.get(currentPage.data.previous);
+      setCharacterList(prev.data.results);
+    }
+
+    if (buttonName === "Next") {
+      setPageNumber(pageNumber + 1);
+      let next = await axios.get(currentPage.data.next);
+      setCharacterList(next.data.results);
+    }
+  }
+
+  async function getCharacters(url) {
     let res = await axios.get(url);
-    setNumOfPages(Math.ceil(res.data.count / 10)); // this is causing number of pages to be reset
+
+    let pageRemainder = res.data.count / 10;
+
+    if (pageRemainder) setNumOfPages(Math.ceil(pageRemainder));
 
     let iterator = 1;
     for (let character of res.data.results) {
@@ -83,7 +83,6 @@ function App() {
                 className=" search-input col-sm-4"
                 type="text"
                 onChange={(e) => setCharacterName(e.target.value)}
-                n
                 value={characterName}
               />
               <button className="search-button col-sm-2" type="submit">

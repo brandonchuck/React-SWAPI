@@ -16,6 +16,7 @@ const PaginateBar = ({ numOfPages, updatePageNumber, handleNextPrevClick }) => {
           </button>
         </li>
         {pages.map((page) => {
+          page.toString();
           return (
             <li className="page-item" key={page}>
               <button

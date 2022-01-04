@@ -65,7 +65,7 @@ function App() {
         let species = await axios.get(character.species[0]);
         character["species"] = species.data.name;
       } else {
-        character["species"] = "unknown";
+        character["species"] = "Human";
       }
       iterator++;
     }

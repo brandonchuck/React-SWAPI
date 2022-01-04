@@ -11,8 +11,14 @@
 
 # Preview
 
+- Viewing all characters
 ![starwars-api-preview1.png](./public/starwars-api-preview1.png)
+
+- Viewing specific character
 ![starwars-api-preview2.png](./public/starwars-api-preview2.png)
+
+- View characters that contain user input
+![starwars-api-preview3.png](./public/starwars-api-preview3.png)
 
 
 # Summary

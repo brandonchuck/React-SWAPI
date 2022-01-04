@@ -7,7 +7,7 @@
 
 # Website
 
-- See it [here](https://reactjs-expense-tracker.herokuapp.com/) on Heroku! 
+- See it [here](https://starwars-api-application.herokuapp.com/) on Heroku! 
 
 # Preview
 

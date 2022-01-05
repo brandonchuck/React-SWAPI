@@ -1,4 +1,4 @@
-# Starwars API Database Application
+# Starwars API Application
 
 # Overview
 

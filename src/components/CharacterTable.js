@@ -14,10 +14,10 @@ const CharacterTable = ({ characterList }) => {
           </tr>
         </thead>
         <tbody>
-          {characterList.map((character) => {
+          {characterList.map((character, index) => {
             return (
               <tr key={character.name}>
-                <td>{character.characterIndex}</td>
+                <td>{index + 1}</td>
                 <td>{character.name}</td>
                 <td>{character.birth_year}</td>
                 <td>{character.height}</td>

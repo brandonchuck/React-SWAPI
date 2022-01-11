@@ -1,59 +1,55 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import CharacterTable from "./CharacterTable";
-import PaginateBar from "./PaginateBar";
+import CharacterTable from "./components/CharacterTable";
+import PaginateBar from "./components/PaginateBar";
 import axios from "axios";
 
 function App() {
   const [characterName, setCharacterName] = useState("");
   const [characterList, setCharacterList] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
-  const [numOfPages, setNumOfPages] = useState("");
+  const [pageCount, setPageCount] = useState("");
+
+  const BASE_URL = "https://swapi.dev/api/people/";
 
   useEffect(() => {
     fetchCharacters();
   }, [pageNumber]);
 
-  function updatePageNumber(pageNum) {
-    setPageNumber(Number(pageNum));
-  }
-
   async function paginate(pageNum) {
     let url;
     if (characterName === "") {
-      url = `https://swapi.dev/api/people/?page=${pageNum}`;
+      url = `${BASE_URL}?page=${pageNum}`;
     } else {
-      url = `https://swapi.dev/api/people/?search=${characterName}&page=${pageNum}`;
+      url = `${BASE_URL}?search=${characterName}&page=${pageNum}`;
     }
-    const res = await axios.get(url);
-    getCharacters(res.data.results);
+    const { data } = await axios.get(url);
+    getCharacters(data.results);
   }
 
   async function handleSearch(e) {
     e.preventDefault();
-    setPageNumber(1); // reset pageNumber to 1 on each search
-    const url = `https://swapi.dev/api/people/?search=${characterName}`;
-    const res = await axios.get(url);
-    setNumOfPages(Math.ceil(res.data.count / 10));
-    getCharacters(res.data.results);
+    setPageNumber(1);
+    const url = `${BASE_URL}?search=${characterName}`;
+    const { data } = await axios.get(url);
+    setPageCount(Math.ceil(data.count / 10));
+    getCharacters(data.results);
   }
 
   async function fetchCharacters() {
     let url;
     if (characterName === "") {
-      url = `https://swapi.dev/api/people/?page=${pageNumber}`;
+      url = `${BASE_URL}?page=${pageNumber}`;
     } else {
-      url = `https://swapi.dev/api/people/?search=${characterName}&page=${pageNumber}`;
+      url = `${BASE_URL}?search=${characterName}&page=${pageNumber}`;
     }
-    const res = await axios.get(url);
-    setNumOfPages(Math.ceil(res.data.count / 10));
-    getCharacters(res.data.results);
+    const { data } = await axios.get(url);
+    setPageCount(Math.ceil(data.count / 10));
+    getCharacters(data.results);
   }
 
   async function handleNextPrevClick(buttonName) {
-    console.log(pageNumber);
-    console.log("Clicked: " + buttonName);
-    if (buttonName === "Next" && pageNumber < numOfPages) {
+    if (buttonName === "Next" && pageNumber < pageCount) {
       setPageNumber(pageNumber + 1);
     }
 
@@ -63,21 +59,25 @@ function App() {
   }
 
   async function getCharacters(characters) {
-    let characterIndex = 1;
     for (const character of characters) {
-      character["characterIndex"] = characterIndex;
-      const homeworld = await axios.get(character.homeworld);
-      character["homeworld"] = homeworld.data.name;
-
-      if (character.species.length > 0) {
-        const species = await axios.get(character.species[0]);
-        character["species"] = species.data.name;
-      } else {
-        character["species"] = "Human";
-      }
-      characterIndex++;
+      await getHomeworld(character);
+      await getSpecies(character);
     }
     setCharacterList(characters);
+  }
+
+  async function getHomeworld(character) {
+    const { data } = await axios.get(character.homeworld);
+    character.homeworld = data.name;
+  }
+
+  async function getSpecies(character) {
+    if (!character.species.length) {
+      character.species = "Human";
+    } else {
+      const { data } = await axios.get(character.species[0]);
+      character.species = data.name;
+    }
   }
 
   return (
@@ -101,10 +101,10 @@ function App() {
         </div>
         <CharacterTable characterList={characterList} />
         <PaginateBar
-          numOfPages={numOfPages}
+          pageCount={pageCount}
           paginate={paginate}
           handleNextPrevClick={handleNextPrevClick}
-          updatePageNumber={updatePageNumber}
+          setPageNumber={setPageNumber}
         />
       </div>
     </div>

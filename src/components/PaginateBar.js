@@ -1,11 +1,11 @@
 const PaginateBar = ({
-  numOfPages,
-  updatePageNumber,
+  pageCount,
+  setPageNumber,
   paginate,
   handleNextPrevClick,
 }) => {
   const pages = [];
-  for (let i = 1; i <= numOfPages; i++) {
+  for (let i = 1; i <= pageCount; i++) {
     pages.push(i);
   }
 
@@ -26,7 +26,7 @@ const PaginateBar = ({
               <button
                 className="paginate-button page-link"
                 onClick={(e) => {
-                  updatePageNumber(e.target.textContent);
+                  setPageNumber(Number(e.target.textContent));
                   paginate(e.target.textContent);
                   e.target.classList.toggle("active");
                 }}

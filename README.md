@@ -17,7 +17,7 @@
 - Viewing specific character
 ![starwars-api-preview2.png](./public/starwars-api-preview2.png)
 
-- View characters that contain user input
+- View characters by search content
 ![starwars-api-preview3.png](./public/starwars-api-preview3.png)
 
 

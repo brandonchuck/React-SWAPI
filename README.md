@@ -48,4 +48,4 @@ You may also see any lint errors in the console.
 
 # Author
 
-Brandon Chuck | Full Stack Developer | [LinkedIn](https://www.linkedin.com/in/brandonchuck/)
+Brandon Chuck | Full Stack Developer | [LinkedIn](https://www.linkedin.com/in/brandonchuck/) | [Personal Website](www.brandonchuck-dev.com)
